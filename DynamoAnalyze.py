@@ -2,6 +2,7 @@ import subprocess
 import shlex
 import GlobalSettings
 import os
+import re
 
 class DynamoAnalyze:
 
@@ -13,7 +14,19 @@ class DynamoAnalyze:
             dirlist = os.listdir(GlobalSettings.logdir)
             with open(fr"{GlobalSettings.logdir}\{dirlist[0]}") as f:
                 arr = f.read()
-
+                trace = self.creatTrace(arr)
             os.remove(fr"{GlobalSettings.logdir}\{dirlist[0]}")
+            return trace
 
+    def parse(self, arr : str):
+        simple = r"module[[]  [0-1][]]: 0x[0-9a-f]*"
+        match = re.finditer(simple, arr)
+        return match
+
+    def creatTrace(self, arr):
+        match = self.parse(arr)
+        trace = []
+        for m in match:
+            trace.append(m[0].split()[2])
+        return trace
 

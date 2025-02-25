@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     #executable_path = sys.argv[1]
     executable_path = "C:\\Users\\eprig\\Documents\\ProjectsOfMBKS\\lab1\\vuln13.exe"
-    #myfuzz = Fuzzer('config_13')
-    #myfuzz.fuzz('config_13', executable_path)
-    d = DynamoAnalyze()
-    d.start(executable_path)
+    myfuzz = Fuzzer('config_13', executable_path)
+    myfuzz.fuzz('config_13', executable_path)
+    #d = DynamoAnalyze()
+    #d.start(executable_path)
