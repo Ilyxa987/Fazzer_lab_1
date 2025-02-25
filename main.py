@@ -1,6 +1,7 @@
 import sys
 from fuzzer import Fuzzer
 from Fridacheck import FridaCheck
+from DynamoAnalyze import DynamoAnalyze
 
 
 if __name__ == "__main__":
@@ -10,13 +11,8 @@ if __name__ == "__main__":
     #    sys.exit(1)
 
     #executable_path = sys.argv[1]
-    executable_path = r"C:\Users\eprig\Documents\ProjectsOfMBKS\lab1\vuln13.exe"
-    myfuzz = Fuzzer('config_13')
-    myfuzz.fuzz('config_13', executable_path)
-    #frid = FridaCheck()
-    #frid.run_process(executable_path)
-    #run_process(executable_path)
-
-    #print(exception_code, eip)
-
-    #fuzz('config_13')
+    executable_path = "C:\\Users\\eprig\\Documents\\ProjectsOfMBKS\\lab1\\vuln13.exe"
+    #myfuzz = Fuzzer('config_13')
+    #myfuzz.fuzz('config_13', executable_path)
+    d = DynamoAnalyze()
+    d.start(executable_path)
