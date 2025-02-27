@@ -17,7 +17,7 @@ class FridaCheck:
                 var exceptionCode = exception.type;
                 // Получаем значение регистра RIP (или EIP на 32-битных системах)
                 var rip = exception.context.esp;
-                var backtrace = Memory.readByteArray(rip, 64);
+                var backtrace = Thread.backtrace(exception.context, Backtracer.FUZZY);
                 //const process = Process.enumerateThreads()[0]; // Получаем первый поток
                 //const backtrace = Context.context(); // Читаем стек
                 
@@ -40,7 +40,7 @@ class FridaCheck:
         if message['type'] == 'send':
             payload = message['payload']
             if payload['type'] == 'exception':
-                print(f"Exception occurred! Code: {payload['exceptionCode']}, RIP: {payload['rip']}")
+                print(f"Exception occurred! Code: {payload['exceptionCode']}, ESP: {payload['rip']}")
                 print(payload['backtrace'])
                 self.exception_code = payload['exceptionCode']
                 self.eip = payload['rip']
