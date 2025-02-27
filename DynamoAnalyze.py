@@ -1,6 +1,5 @@
 import subprocess
-import shlex
-import GlobalSettings
+from settings import GlobalSettings
 import os
 import re
 
@@ -27,6 +26,7 @@ class DynamoAnalyze:
         match = self.parse(arr)
         trace = []
         for m in match:
-            trace.append(m[0].split()[2])
+            if m[0].split()[2] not in trace:
+                trace.append(m[0].split()[2])
         return trace
 

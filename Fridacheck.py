@@ -18,6 +18,9 @@ class FridaCheck:
                 // Получаем значение регистра RIP (или EIP на 32-битных системах)
                 var rip = exception.context.esp;
                 var backtrace = Memory.readByteArray(rip, 64);
+                //const process = Process.enumerateThreads()[0]; // Получаем первый поток
+                //const backtrace = Context.context(); // Читаем стек
+                
 
                 // Выводим информацию об исключении
                 send({
